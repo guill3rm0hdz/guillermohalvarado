@@ -1,0 +1,62 @@
+{
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/portafolio/design-agency",
+        "destination": "/portafolio/design-agency.html"
+      },
+      {
+        "source": "/portafolio/digital-actives",
+        "destination": "/portafolio/digital-actives.html"
+      },
+      {
+        "source": "/portafolio/personal-landing",
+        "destination": "/portafolio/personal-landing.html"
+      },
+      {
+        "source": "/portafolio/personal-marketing-digital",
+        "destination": "/portafolio/personal-marketing-digital.html"
+      },
+      {
+        "source": "/portafolio/prosolutions",
+        "destination": "/portafolio/prosolutions.html"
+      },
+      {
+        "source": "/portafolio/spa-medico",
+        "destination": "/portafolio/spa-medico.html"
+      },
+      {
+        "source": "/privacidad",
+        "destination": "/privacidad.html"
+      },
+      {
+        "source": "**",
+        "destination": "/404.html"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/blog",
+        "destination": "https://medium.com/@guillermo.her1",
+        "type": 301
+      },
+      {
+        "source": "/linkedin",
+        "destination": "https://www.linkedin.com/in/guillermohalvarado",
+        "type": 301
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}

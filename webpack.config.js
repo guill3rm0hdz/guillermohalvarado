@@ -37,8 +37,8 @@ module.exports = {
                 { from: /^\/$/, to: '/index.html' },
                 { from: /^\/portafolio\/design-agency$/, to: '/portafolio/design-agency.html' },
                 { from: /^\/portafolio\/digital-actives$/, to: '/portafolio/digital-actives.html' },
-                { from: /^\/portafolio\/personal-landing$/, to: '/portafolio/personallanding.html' },
-                { from: /^\/portafolio\/personal-marketing-digital$/, to: '/portafolio/personalMarketingDigital.html' },
+                { from: /^\/portafolio\/personal-landing$/, to: '/portafolio/personal-landing.html' },
+                { from: /^\/portafolio\/personal-marketing-digital$/, to: '/portafolio/personal-marketing-digital.html' },
                 { from: /^\/portafolio\/prosolutions$/, to: '/portafolio/prosolutions.html' },
                 { from: /^\/portafolio\/spa-medico$/, to: '/portafolio/spa-medico.html' },
                 { from: /^\/privacidad$/, to: '/privacidad.html' },
@@ -72,12 +72,12 @@ module.exports = {
             template: './src/_templates/portafolio/digital-actives.hbs'
         }),
         new HtmlWebpackPlugin({
-            filename: 'portafolio/personallanding.html',
-            template: './src/_templates/portafolio/personallanding.hbs'
+            filename: 'portafolio/personal-landing.html',
+            template: './src/_templates/portafolio/personal-landing.hbs'
         }),
         new HtmlWebpackPlugin({
-            filename: 'portafolio/personalMarketingDigital.html',
-            template: './src/_templates/portafolio/personalMarketingDigital.hbs'
+            filename: 'portafolio/personal-marketing-digital.html',
+            template: './src/_templates/portafolio/personal-marketing-digital.hbs'
         }),
         new HtmlWebpackPlugin({
             filename: 'portafolio/prosolutions.html',
