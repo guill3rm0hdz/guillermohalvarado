@@ -355,9 +355,10 @@ a:hover, a:focus {
 .slider-img:before {
   position: absolute;
   content: "";
-  right: -20px;
-  top: 20px;
-  border: 10px solid rgba(249, 179, 83, 0.8);
+  right: 0;
+  top: 0;
+  border: 0.5rem solid #59729C;
+  border-radius: 2rem;
   width: 100%;
   height: 100%;
 }

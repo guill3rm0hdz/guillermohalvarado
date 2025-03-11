@@ -54,7 +54,12 @@
         "source": "/linkedin",
         "destination": "https://www.linkedin.com/in/guillermohalvarado",
         "type": 301
-      }
+      },
+      {
+        "source": "/behance",
+        "destination": "https://www.behance.net/guillermohalvarado",
+        "type": 301
+      }      
     ],
     "cleanUrls": true,
     "trailingSlash": false
