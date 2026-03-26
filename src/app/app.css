@@ -1,0 +1,20 @@
+/* Smooth transitions for header elements */
+mat-toolbar {
+  transition: all 0.5s var(--ease-premium) !important;
+}
+
+mat-toolbar button, 
+mat-toolbar a {
+  transition: all 0.3s ease !important;
+}
+
+/* Ensure buttons are solid on the header */
+.mat-mdc-button {
+  --mdc-text-button-label-text-color: inherit !important;
+}
+
+/* Enhanced Glass effect */
+.backdrop-blur-2xl {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
