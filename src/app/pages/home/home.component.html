@@ -1,37 +1,39 @@
 <!-- Header -->
 <mat-toolbar
-  class="fixed top-0 z-50 flex justify-between px-6 md:px-12 py-4 h-20 backdrop-blur-xl bg-brand-white/90 border-b border-white/10 shadow-sm transition-all duration-500">
+  class="fixed top-0 z-50 flex justify-between px-6 md:px-12 py-4 h-20 backdrop-blur-xl bg-brand-white/80 border-b border-brand-blue-dark/5 transition-all duration-700"
+  style="will-change: transform;">
   <div class="flex items-center gap-3 cursor-pointer group" (click)="scrollTo('inicio')">
     <img src="images/logo-guillermohalvarado.png" alt="Logo"
-      class="h-8 md:h-10 object-contain transition-transform duration-500 group-hover:scale-105" />
+      class="h-8 md:h-10 object-contain transition-all duration-500 group-hover:scale-105 group-hover:brightness-110" />
   </div>
 
-  <!-- Desktop Nav (Hidden until xl for better spacing) -->
-  <div class="hidden xl:flex items-center gap-8">
+  <!-- Desktop Nav -->
+  <div class="hidden xl:flex items-center gap-2">
     <button mat-button
-      class="!text-brand-blue-dark !text-sm !font-semibold !tracking-wide hover:!text-brand-orange transition-colors"
+      class="nav-link !text-brand-blue-dark/70 !text-sm !font-semibold !tracking-wide hover:!text-brand-blue-dark !rounded-xl !px-5 !py-2 hover:!bg-brand-blue-dark/5 transition-all duration-300"
       (click)="scrollTo('especializacion')">Especialización</button>
     <button mat-button
-      class="!text-brand-blue-dark !text-sm !font-semibold !tracking-wide hover:!text-brand-orange transition-colors"
+      class="nav-link !text-brand-blue-dark/70 !text-sm !font-semibold !tracking-wide hover:!text-brand-blue-dark !rounded-xl !px-5 !py-2 hover:!bg-brand-blue-dark/5 transition-all duration-300"
       (click)="scrollTo('metodologia')">Metodología</button>
     <button mat-button
-      class="!text-brand-blue-dark !text-sm !font-semibold !tracking-wide hover:!text-brand-orange transition-colors"
+      class="nav-link !text-brand-blue-dark/70 !text-sm !font-semibold !tracking-wide hover:!text-brand-blue-dark !rounded-xl !px-5 !py-2 hover:!bg-brand-blue-dark/5 transition-all duration-300"
       (click)="scrollTo('faq')">FAQ</button>
+    <div class="h-6 w-px bg-brand-blue-dark/10 mx-3"></div>
     <a href="https://www.linkedin.com/in/guillermoHAlvarado" target="_blank" mat-flat-button
-      class="!bg-brand-blue-dark !text-brand-white !px-6 !rounded-full !font-bold btn-premium">Portafolio</a>
+      class="!bg-brand-blue-dark !text-brand-white !px-7 !py-2 !rounded-xl !font-bold !text-sm hover:!bg-brand-blue-dark/90 transition-all duration-300 hover:!shadow-lg hover:!shadow-brand-blue-dark/10">Portafolio</a>
   </div>
 
   <!-- Mobile Toggle -->
   <button mat-icon-button (click)="toggleMenu()"
-    class="xl:!hidden !text-brand-blue-dark flex items-center justify-center">
+    class="xl:!hidden !text-brand-blue-dark flex items-center justify-center hover:!bg-brand-blue-dark/5 !rounded-xl transition-all duration-300">
     <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
   </button>
 </mat-toolbar>
 
-<!-- Mobile Overlay (Hidden by default, animated via GSAP) -->
+<!-- Mobile Overlay -->
 <div
   class="mobile-menu-overlay fixed inset-0 z-[60] bg-brand-blue-dark translate-x-full xl:hidden flex flex-col justify-center items-center gap-10 p-12">
-  <button (click)="toggleMenu()" class="absolute top-6 right-6 text-brand-white p-4">
+  <button (click)="toggleMenu()" class="absolute top-6 right-6 text-brand-white p-4 hover:text-brand-orange transition-colors duration-300">
     <mat-icon class="scale-150">close</mat-icon>
   </button>
 
@@ -51,112 +53,142 @@
   </div>
 </div>
 
-<main id="inicio" class="bg-brand-white">
+<main id="inicio" class="bg-brand-bg">
 
   <!-- 1. Presentación (Hero) -->
   <section
-    class="min-h-screen flex flex-col lg:flex-row justify-center items-center px-6 md:px-12 lg:px-24 relative overflow-hidden bg-brand-white pt-32 pb-20 lg:py-32 gap-12 lg:gap-0">
+    class="hero-section min-h-screen flex flex-col lg:flex-row justify-center items-center px-6 md:px-12 lg:px-24 relative overflow-hidden bg-brand-bg pt-32 pb-20 lg:py-32 gap-12 lg:gap-0">
     <!-- Background Decor -->
-    <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl"></div>
-    <div class="absolute top-1/2 -right-24 w-64 h-64 bg-brand-blue-light/10 rounded-full blur-3xl"></div>
+    <div class="hero-bg-1 absolute -top-32 -left-32 w-[500px] h-[500px] bg-brand-orange/8 rounded-full blur-[100px]"></div>
+    <div class="hero-bg-2 absolute top-1/2 -right-32 w-[400px] h-[400px] bg-brand-blue-light/8 rounded-full blur-[100px]"></div>
+    <div class="hero-bg-3 absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-brand-blue-dark/5 rounded-full blur-[80px]"></div>
+
+    <!-- Dot Pattern Background -->
+    <div class="absolute inset-0 dot-pattern opacity-30 pointer-events-none"></div>
 
     <div class="w-full lg:w-3/5 z-10 hero-content text-center lg:text-left">
-      <div class="inline-block px-4 py-1.5 mb-8 rounded-full bg-brand-blue-dark/5 border border-brand-blue-dark/10">
+      <div class="hero-badge inline-flex items-center gap-2.5 px-5 py-2 mb-10 rounded-full bg-brand-white border border-brand-blue-dark/8 premium-shadow">
         <span
-          class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-blue-light flex items-center gap-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
-          Disponible para proyectos
+          class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-blue-light flex items-center gap-2.5">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
+          </span>
+          Estrategia y Claridad Visual
         </span>
       </div>
       <h1
-        class="hero-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1] lg:leading-[0.9] text-brand-blue-dark">
-        Soluciones web <span class="text-brand-orange"> eficaces para </span><br />
+        class="hero-title text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.04em] mb-8 leading-[1.05] lg:leading-[0.95] text-brand-blue-dark">
+        Soluciones web <span class="text-gradient-orange"> eficaces para </span><br />
         <span class="text-gradient">objetivos reales.</span>
       </h1>
       <p
-        class="hero-subtitle text-lg md:text-xl lg:text-2xl text-brand-blue-light/80 mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+        class="hero-subtitle text-lg md:text-xl lg:text-[1.35rem] text-brand-blue-light/70 mb-14 max-w-xl mx-auto lg:mx-0 leading-[1.7] font-normal">
         Mi objetivo es agregar valor a los activos digitales de las empresas a través de <strong
           class="font-semibold text-brand-blue-dark">soluciones digitales útiles y eficientes</strong>, uniendo diseño y
         código con precisión técnica.
       </p>
-      <div class="hero-cta flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+      <div class="hero-cta flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
         <a href="https://www.linkedin.com/in/guillermoHAlvarado" target="_blank" mat-flat-button
-          class="!bg-brand-orange !text-brand-white !px-10 !py-8 !text-lg !rounded-2xl !font-bold btn-premium group">
+          class="!bg-brand-orange !text-brand-white !px-10 !py-7 !text-lg !rounded-2xl !font-bold btn-premium group !border-0">
           Conoce mi portafolio
-          <mat-icon class="ml-2 transition-transform group-hover:translate-x-1">arrow_forward</mat-icon>
+          <mat-icon class="ml-2 transition-transform duration-500 group-hover:translate-x-1.5">arrow_forward</mat-icon>
         </a>
       </div>
     </div>
 
     <div class="w-full lg:w-2/5 flex justify-center mt-8 lg:mt-0 z-10 hero-image relative">
+      <!-- Glow behind image -->
+      <div class="absolute inset-0 bg-brand-orange/10 rounded-[3rem] blur-[60px] scale-75 animate-[pulse-soft_4s_ease-in-out_infinite]"></div>
       <div
-        class="relative w-full max-w-[240px] sm:max-w-md aspect-square rounded-[3rem] overflow-hidden premium-shadow rotate-3 hover:rotate-0 transition-transform duration-700">
+        class="relative w-full max-w-[260px] sm:max-w-md aspect-square rounded-[2.5rem] overflow-hidden premium-shadow-lg rotate-3 hover:rotate-0 transition-all duration-1000 ease-premium group">
         <img src="images/guillermo-halvarado.jpg" alt="Guillermo HAlvarado"
-          class="absolute inset-0 w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-1000" />
+          class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" />
+        <!-- Overlay gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue-dark/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
       </div>
       <!-- Decorative element -->
       <div
-        class="absolute -bottom-4 -left-4 md:-bottom-10 md:-left-10 w-20 h-20 md:w-40 md:h-40 bg-brand-blue-dark rounded-3xl -z-10 -rotate-12">
+        class="hero-decor absolute -bottom-6 -left-6 md:-bottom-12 md:-left-12 w-24 h-24 md:w-44 md:h-44 bg-brand-blue-dark rounded-[1.5rem] -z-10 -rotate-12 opacity-90">
       </div>
+      <!-- Floating accent -->
+      <div class="hero-float absolute -top-4 -right-4 md:-top-6 md:-right-6 w-12 h-12 md:w-16 md:h-16 bg-brand-orange rounded-2xl -z-10 rotate-12 opacity-60"></div>
     </div>
   </section>
 
-  <!-- ... (Especialización section remains unchanged) ... -->
-  <!-- (Note: I'll include enough context for the replacement to work) -->
-
+  <!-- Transition divider -->
+  <div class="relative h-24 md:h-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-bg to-brand-blue-dark"></div>
+    <svg class="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 40" preserveAspectRatio="none">
+      <path d="M0,40 C360,0 1080,0 1440,40 L1440,40 L0,40 Z" fill="#34435C" opacity="0.05"/>
+    </svg>
+  </div>
 
   <!-- 2. Especialización -->
-  <section id="especializacion" class="section-padding bg-brand-blue-dark relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none">
+  <section id="especializacion" class="section-padding bg-brand-blue-dark relative overflow-hidden noise-overlay">
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="white" stroke-width="1" />
+          <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" stroke-width="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
     </div>
 
+    <!-- Gradient orbs -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-[150px] -mr-64 -mt-64"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-blue-light/5 rounded-full blur-[120px] -ml-32 -mb-32"></div>
+
     <div class="max-w-7xl mx-auto relative z-10">
-      <div class="mb-24 section-header">
-        <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em] mb-4">Lo que hago</h2>
-        <h3 class="text-4xl md:text-6xl font-black text-brand-white mb-8 tracking-tighter">Especialización</h3>
-        <p class="text-brand-gray text-xl max-w-2xl leading-relaxed">Transformo ideas en activos digitales donde la
+      <div class="mb-20 md:mb-28 section-header">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="h-px w-8 bg-brand-orange"></div>
+          <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Lo que hago</h2>
+        </div>
+        <h3 class="text-4xl md:text-6xl lg:text-7xl font-black text-brand-white mb-8 tracking-[-0.03em] leading-[1.05]">Especialización</h3>
+        <p class="text-brand-gray/80 text-lg md:text-xl max-w-2xl leading-relaxed">Transformo ideas en activos digitales donde la
           ingeniería se encuentra con la narrativa visual para guiar al usuario hacia el siguiente paso.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
         <!-- Landing Pages -->
         <mat-card class="service-card !bg-transparent !shadow-none !border-none group">
-          <div class="overflow-hidden rounded-[2rem] h-80 mb-8 premium-shadow relative">
+          <div class="overflow-hidden rounded-[1.75rem] h-72 md:h-80 mb-8 relative">
             <img src="images/landingPages.webp" alt="Landing Pages"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-60 group-hover:opacity-100" />
-            <div class="absolute inset-0 bg-linear-to-t from-brand-blue-dark via-transparent opacity-80"></div>
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-premium opacity-50 group-hover:opacity-80" />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-blue-dark via-brand-blue-dark/40 to-transparent opacity-90"></div>
+            <!-- Floating label -->
+            <div class="absolute bottom-6 left-6 flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-white/10 backdrop-blur-md border border-brand-white/10">
+              <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+              <span class="text-brand-white text-xs font-bold uppercase tracking-wider">Conversión</span>
+            </div>
           </div>
-          <mat-card-header class="!p-0 !mb-6">
+          <mat-card-header class="!p-0 !mb-5">
             <mat-card-title
-              class="!text-3xl !font-black text-brand-white group-hover:text-brand-orange transition-colors duration-500 tracking-tight">Landing
+              class="!text-2xl md:!text-3xl !font-black text-brand-white group-hover:text-brand-orange transition-colors duration-500 tracking-tight !leading-tight">Landing
               Pages de Alta Conversión</mat-card-title>
           </mat-card-header>
           <mat-card-content class="!p-0">
-            <p class="text-brand-gray text-lg mb-8 leading-relaxed">Diseño páginas de aterrizaje enfocadas en captar la
+            <p class="text-brand-gray/70 text-base md:text-lg mb-8 leading-relaxed">Diseño páginas de aterrizaje enfocadas en captar la
               atención y guiar al usuario de forma intuitiva.</p>
             <ul class="grid grid-cols-1 gap-4">
               <li
-                class="flex items-center gap-4 text-brand-white group-hover:translate-x-2 transition-transform duration-500">
-                <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
-                <span class="font-medium"><strong>Estructura Estratégica:</strong> Modelo AIDA.</span>
+                class="flex items-center gap-4 text-brand-white/90 group-hover:translate-x-2 transition-transform duration-500">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0"></span>
+                <span class="font-medium text-sm md:text-base"><strong>Estructura Estratégica:</strong> Modelo AIDA.</span>
               </li>
               <li
-                class="flex items-center gap-4 text-brand-white group-hover:translate-x-2 transition-transform duration-500 delay-75">
-                <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
-                <span class="font-medium"><strong>Interactividad con GSAP:</strong> Animaciones sutiles.</span>
+                class="flex items-center gap-4 text-brand-white/90 group-hover:translate-x-2 transition-transform duration-500 delay-75">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0"></span>
+                <span class="font-medium text-sm md:text-base"><strong>Interactividad con GSAP:</strong> Animaciones sutiles.</span>
               </li>
               <li
-                class="flex items-center gap-4 text-brand-white group-hover:translate-x-2 transition-transform duration-500 delay-150">
-                <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
-                <span class="font-medium"><strong>Optimización para Campañas:</strong> Preparadas para tráfico.</span>
+                class="flex items-center gap-4 text-brand-white/90 group-hover:translate-x-2 transition-transform duration-500 delay-150">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0"></span>
+                <span class="font-medium text-sm md:text-base"><strong>Optimización para Campañas:</strong> Preparadas para tráfico.</span>
               </li>
             </ul>
           </mat-card-content>
@@ -164,29 +196,34 @@
 
         <!-- Sitios Web Corporativos -->
         <mat-card class="service-card !bg-transparent !shadow-none !border-none group">
-          <div class="overflow-hidden rounded-[2rem] h-80 mb-8 premium-shadow relative">
+          <div class="overflow-hidden rounded-[1.75rem] h-72 md:h-80 mb-8 relative">
             <img src="images/sitios-Web.webp" alt="Sitios Web Corporativos"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-60 group-hover:opacity-100" />
-            <div class="absolute inset-0 bg-linear-to-t from-brand-blue-dark via-transparent opacity-80"></div>
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-premium opacity-50 group-hover:opacity-80" />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-blue-dark via-brand-blue-dark/40 to-transparent opacity-90"></div>
+            <!-- Floating label -->
+            <div class="absolute bottom-6 left-6 flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-white/10 backdrop-blur-md border border-brand-white/10">
+              <span class="w-2 h-2 rounded-full bg-brand-blue-light"></span>
+              <span class="text-brand-white text-xs font-bold uppercase tracking-wider">Corporativo</span>
+            </div>
           </div>
-          <mat-card-header class="!p-0 !mb-6">
+          <mat-card-header class="!p-0 !mb-5">
             <mat-card-title
-              class="!text-3xl !font-black text-brand-white group-hover:text-brand-orange transition-colors duration-500 tracking-tight">Sitios
+              class="!text-2xl md:!text-3xl !font-black text-brand-white group-hover:text-brand-orange transition-colors duration-500 tracking-tight !leading-tight">Sitios
               Web Corporativos</mat-card-title>
           </mat-card-header>
           <mat-card-content class="!p-0">
-            <p class="text-brand-gray text-lg mb-8 leading-relaxed">Desarrollo sitios institucionales que fortalecen la
+            <p class="text-brand-gray/70 text-base md:text-lg mb-8 leading-relaxed">Desarrollo sitios institucionales que fortalecen la
               presencia online de negocios y profesionales.</p>
             <ul class="grid grid-cols-1 gap-4">
               <li
-                class="flex items-center gap-4 text-brand-white group-hover:translate-x-2 transition-transform duration-500">
-                <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
-                <span class="font-medium"><strong>Diseño a Medida:</strong> Estructuras personalizadas.</span>
+                class="flex items-center gap-4 text-brand-white/90 group-hover:translate-x-2 transition-transform duration-500">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0"></span>
+                <span class="font-medium text-sm md:text-base"><strong>Diseño a Medida:</strong> Estructuras personalizadas.</span>
               </li>
               <li
-                class="flex items-center gap-4 text-brand-white group-hover:translate-x-2 transition-transform duration-500 delay-150">
-                <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
-                <span class="font-medium"><strong>Código Semántico:</strong> Accesibilidad y SEO técnico.</span>
+                class="flex items-center gap-4 text-brand-white/90 group-hover:translate-x-2 transition-transform duration-500 delay-150">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0"></span>
+                <span class="font-medium text-sm md:text-base"><strong>Código Semántico:</strong> Accesibilidad y SEO técnico.</span>
               </li>
             </ul>
           </mat-card-content>
@@ -195,61 +232,73 @@
     </div>
   </section>
 
+  <!-- Transition divider -->
+  <div class="relative h-24 md:h-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-blue-dark to-brand-bg"></div>
+  </div>
+
   <!-- 3. Metodología -->
-  <section id="metodologia" class="section-padding bg-brand-white overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 section-header">
+  <section id="metodologia" class="section-padding bg-brand-bg overflow-hidden relative">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 dot-pattern opacity-20 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 md:mb-28 gap-8 section-header">
         <div class="max-w-2xl">
-          <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em] mb-4">Proceso</h2>
-          <h3 class="text-4xl md:text-6xl font-black text-brand-blue-dark tracking-tighter">Mi Metodología de Trabajo
+          <div class="flex items-center gap-3 mb-5">
+            <div class="h-px w-8 bg-brand-orange"></div>
+            <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Proceso</h2>
+          </div>
+          <h3 class="text-4xl md:text-6xl lg:text-7xl font-black text-brand-blue-dark tracking-[-0.03em] leading-[1.05]">Mi Metodología de Trabajo
           </h3>
         </div>
-        <p class="text-brand-blue-light text-xl max-w-md leading-relaxed">Sigo un proceso claro para transformar
+        <p class="text-brand-blue-light/70 text-lg md:text-xl max-w-md leading-relaxed">Sigo un proceso claro para transformar
           requerimientos en productos digitales funcionales.</p>
       </div>
 
       <div class="relative">
         <!-- Connecting Line -->
-        <div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-brand-gray/30 -z-10 translate-y-[-50%]">
+        <div class="hidden md:block absolute top-10 left-[10%] w-[80%] h-px -z-10"
+          style="background: linear-gradient(90deg, transparent 0%, rgba(249, 179, 83, 0.3) 20%, rgba(249, 179, 83, 0.3) 80%, transparent 100%);">
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6">
           <div class="step-item group flex flex-col items-center text-center">
             <div
-              class="w-20 h-20 mb-8 rounded-3xl bg-brand-white border-2 border-brand-gray/20 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white transition-all duration-500 premium-shadow">
+              class="w-20 h-20 mb-8 rounded-2xl bg-brand-white border border-brand-blue-dark/8 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white group-hover:border-brand-blue-dark transition-all duration-500 premium-shadow group-hover:premium-shadow-lg group-hover:scale-110">
               1</div>
-            <h4 class="text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Definición</h4>
-            <p class="text-brand-blue-light leading-relaxed">Objetivos de conversión, público ideal y propuesta de
+            <h4 class="text-lg md:text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Definición</h4>
+            <p class="text-brand-blue-light/60 leading-relaxed text-sm md:text-base">Objetivos de conversión, público ideal y propuesta de
               valor.</p>
           </div>
           <div class="step-item group flex flex-col items-center text-center">
             <div
-              class="w-20 h-20 mb-8 rounded-3xl bg-brand-white border-2 border-brand-gray/20 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white transition-all duration-500 premium-shadow">
+              class="w-20 h-20 mb-8 rounded-2xl bg-brand-white border border-brand-blue-dark/8 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white group-hover:border-brand-blue-dark transition-all duration-500 premium-shadow group-hover:premium-shadow-lg group-hover:scale-110">
               2</div>
-            <h4 class="text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Prototipado</h4>
-            <p class="text-brand-blue-light leading-relaxed">Mockups en Figma para validar la experiencia de usuario.
+            <h4 class="text-lg md:text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Prototipado</h4>
+            <p class="text-brand-blue-light/60 leading-relaxed text-sm md:text-base">Mockups en Figma para validar la experiencia de usuario.
             </p>
           </div>
           <div class="step-item group flex flex-col items-center text-center">
             <div
-              class="w-20 h-20 mb-8 rounded-3xl bg-brand-white border-2 border-brand-gray/20 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white transition-all duration-500 premium-shadow">
+              class="w-20 h-20 mb-8 rounded-2xl bg-brand-white border border-brand-blue-dark/8 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white group-hover:border-brand-blue-dark transition-all duration-500 premium-shadow group-hover:premium-shadow-lg group-hover:scale-110">
               3</div>
-            <h4 class="text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Desarrollo</h4>
-            <p class="text-brand-blue-light leading-relaxed">Código limpio y modular.</p>
+            <h4 class="text-lg md:text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Desarrollo</h4>
+            <p class="text-brand-blue-light/60 leading-relaxed text-sm md:text-base">Código limpio y modular.</p>
           </div>
           <div class="step-item group flex flex-col items-center text-center">
             <div
-              class="w-20 h-20 mb-8 rounded-3xl bg-brand-white border-2 border-brand-gray/20 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white transition-all duration-500 premium-shadow">
+              class="w-20 h-20 mb-8 rounded-2xl bg-brand-white border border-brand-blue-dark/8 flex items-center justify-center text-2xl font-black text-brand-blue-dark group-hover:bg-brand-blue-dark group-hover:text-brand-white group-hover:border-brand-blue-dark transition-all duration-500 premium-shadow group-hover:premium-shadow-lg group-hover:scale-110">
               4</div>
-            <h4 class="text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Optimización</h4>
-            <p class="text-brand-blue-light leading-relaxed">SEO técnico y velocidad</p>
+            <h4 class="text-lg md:text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Optimización</h4>
+            <p class="text-brand-blue-light/60 leading-relaxed text-sm md:text-base">SEO técnico y velocidad</p>
           </div>
           <div class="step-item group flex flex-col items-center text-center">
             <div
-              class="w-20 h-20 mb-8 rounded-3xl bg-brand-orange flex items-center justify-center text-2xl font-black text-brand-white transition-all duration-500 premium-shadow rotate-3 group-hover:rotate-0">
+              class="w-20 h-20 mb-8 rounded-2xl bg-brand-orange flex items-center justify-center text-2xl font-black text-brand-white transition-all duration-500 premium-shadow-orange rotate-3 group-hover:rotate-0 group-hover:scale-110">
               5</div>
-            <h4 class="text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Lanzamiento</h4>
-            <p class="text-brand-blue-light leading-relaxed">Entrega final con soporte técnico inicial incluido.</p>
+            <h4 class="text-lg md:text-xl font-bold mb-3 text-brand-blue-dark tracking-tight">Lanzamiento</h4>
+            <p class="text-brand-blue-light/60 leading-relaxed text-sm md:text-base">Entrega final con soporte técnico inicial incluido.</p>
           </div>
         </div>
       </div>
@@ -257,111 +306,110 @@
   </section>
 
   <!-- 4 & 5. Conocimientos & Calidad -->
-  <section class="section-padding max-w-7xl mx-auto overflow-hidden">
-    <div class="flex flex-col md:flex-row gap-24 items-center">
-      <div class="quality-content md:w-1/2">
-        <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em] mb-4">Estrategia</h2>
-        <h3 class="text-4xl md:text-5xl font-black mb-8 text-brand-blue-dark tracking-tighter">Conocimientos
-          Estratégicos</h3>
-        <p class="text-brand-blue-light text-xl mb-12 leading-relaxed">
-          Mi experiencia me permite aplicar criterios técnicos que mejoran la efectividad de cada sitio web.
-        </p>
-        <ul class="space-y-8">
-          <li class="flex items-start gap-6 group">
-            <div
-              class="bg-brand-orange/10 p-4 rounded-2xl text-brand-orange group-hover:bg-brand-orange group-hover:text-brand-white transition-colors duration-500 shadow-sm">
-              <mat-icon class="scale-125">insights</mat-icon>
-            </div>
-            <div>
-              <span class="font-bold text-2xl text-brand-blue-dark block mb-1 tracking-tight">Optimización y
-                Medición</span>
-              <span class="text-brand-blue-light text-lg">Preparación para Google Ads y Meta Ads.</span>
-            </div>
-          </li>
-          <li class="flex items-start gap-6 group">
-            <div
-              class="bg-brand-orange/10 p-4 rounded-2xl text-brand-orange group-hover:bg-brand-orange group-hover:text-brand-white transition-colors duration-500 shadow-sm">
-              <mat-icon class="scale-125">campaign</mat-icon>
-            </div>
-            <div>
-              <span class="font-bold text-2xl text-brand-blue-dark block mb-1 tracking-tight">Marketing de
-                Afiliados</span>
-              <span class="text-brand-blue-light text-lg">Propuestas de valor claras y orientadas a la acción.</span>
-            </div>
-          </li>
-          <li class="flex items-start gap-6 group">
-            <div
-              class="bg-brand-orange/10 p-4 rounded-2xl text-brand-orange group-hover:bg-brand-orange group-hover:text-brand-white transition-colors duration-500 shadow-sm">
-              <mat-icon class="scale-125">code</mat-icon>
-            </div>
-            <div>
-              <span class="font-bold text-2xl text-brand-blue-dark block mb-1 tracking-tight">Expertiz Técnica</span>
-              <span class="text-brand-blue-light text-lg">HTML5, CSS3, JavaScript, Angular y PHP.</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="quality-image md:w-1/2 relative">
-        <div class="absolute -z-10 inset-0 bg-brand-orange rounded-[4rem] rotate-6 scale-95 opacity-20 blur-2xl"></div>
-        <div
-          class="bg-brand-blue-dark rounded-[4rem] p-12 md:p-16 text-brand-white shadow-2xl relative overflow-hidden group">
-          <!-- Abstract pattern -->
-          <div class="absolute top-0 right-0 w-64 h-64 bg-brand-orange/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-
-          <h3 class="text-3xl md:text-5xl font-black mb-8 text-brand-white tracking-tighter">Enfoque en la Calidad</h3>
-          <p class="text-brand-gray text-xl mb-12 leading-relaxed">
-            Mi compromiso es entregar activos digitales que funcionen correctamente y ofrezcan una respuesta ágil al
-            usuario final.
+  <section class="section-padding overflow-hidden relative bg-brand-bg">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row gap-16 md:gap-24 items-center">
+        <div class="quality-content md:w-1/2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="h-px w-8 bg-brand-orange"></div>
+            <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Estrategia</h2>
+          </div>
+          <h3 class="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-brand-blue-dark tracking-[-0.03em] leading-[1.05]">Conocimientos
+            Estratégicos</h3>
+          <p class="text-brand-blue-light/60 text-lg md:text-xl mb-12 leading-relaxed">
+            Mi experiencia me permite aplicar criterios técnicos que mejoran la efectividad de cada sitio web.
           </p>
-          <ul class="space-y-10">
-            <li class="flex items-center gap-6 group/item">
+          <ul class="space-y-6">
+            <li class="flex items-start gap-5 group p-5 rounded-2xl hover:bg-brand-white transition-all duration-500 hover:premium-shadow">
               <div
-                class="bg-brand-white/10 p-5 rounded-3xl text-brand-orange group-hover/item:scale-110 transition-transform duration-500">
-                <mat-icon class="scale-150">speed</mat-icon>
+                class="bg-brand-orange/10 p-4 rounded-xl text-brand-orange group-hover:bg-brand-orange group-hover:text-brand-white transition-all duration-500 shrink-0">
+                <mat-icon class="scale-110">campaign</mat-icon>
               </div>
-              <span class="text-xl font-bold tracking-tight">Rendimiento y Velocidad (Lighthouse)</span>
+              <div>
+                <span class="font-bold text-xl md:text-2xl text-brand-blue-dark block mb-1.5 tracking-tight">Marketing Digital</span>
+                <span class="text-brand-blue-light/60 text-base md:text-lg leading-relaxed">Propuestas de valor claras y orientadas a la acción.</span>
+              </div>
             </li>
-            <li class="flex items-center gap-6 group/item">
+            <li class="flex items-start gap-5 group p-5 rounded-2xl hover:bg-brand-white transition-all duration-500 hover:premium-shadow">
               <div
-                class="bg-brand-white/10 p-5 rounded-3xl text-brand-orange group-hover/item:scale-110 transition-transform duration-500">
-                <mat-icon class="scale-150">cleaning_services</mat-icon>
+                class="bg-brand-orange/10 p-4 rounded-xl text-brand-orange group-hover:bg-brand-orange group-hover:text-brand-white transition-all duration-500 shrink-0">
+                <mat-icon class="scale-110">code</mat-icon>
               </div>
-              <span class="text-xl font-bold tracking-tight">Diseño Limpio y Simple</span>
+              <div>
+                <span class="font-bold text-xl md:text-2xl text-brand-blue-dark block mb-1.5 tracking-tight">Expertiz Técnica</span>
+                <span class="text-brand-blue-light/60 text-base md:text-lg leading-relaxed">HTML5, CSS3, JavaScript, Angular, etc...</span>
+              </div>
             </li>
           </ul>
+        </div>
+
+        <div class="quality-image md:w-1/2 relative">
+          <div class="absolute -z-10 inset-0 bg-brand-orange/10 rounded-[3rem] rotate-6 scale-90 blur-[40px]"></div>
+          <div
+            class="bg-brand-blue-dark rounded-[2.5rem] p-10 md:p-14 text-brand-white premium-shadow-lg relative overflow-hidden group">
+            <!-- Abstract pattern -->
+            <div class="absolute top-0 right-0 w-72 h-72 bg-brand-orange/8 rounded-full -mr-36 -mt-36 blur-[60px]"></div>
+            <div class="absolute bottom-0 left-0 w-48 h-48 bg-brand-blue-light/8 rounded-full -ml-24 -mb-24 blur-[40px]"></div>
+
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-black mb-8 text-brand-white tracking-[-0.03em] leading-[1.1]">Enfoque en la Calidad</h3>
+            <p class="text-brand-gray/60 text-base md:text-lg mb-12 leading-relaxed">
+              Mi compromiso es entregar activos digitales que funcionen correctamente y ofrezcan una respuesta ágil al
+              usuario final.
+            </p>
+            <ul class="space-y-8">
+              <li class="flex items-center gap-5 group/item p-4 -mx-4 rounded-2xl hover:bg-brand-white/5 transition-all duration-500">
+                <div
+                  class="bg-brand-white/8 p-4 rounded-xl text-brand-orange group-hover/item:bg-brand-orange/20 group-hover/item:scale-110 transition-all duration-500 shrink-0">
+                  <mat-icon class="scale-125">speed</mat-icon>
+                </div>
+                <span class="text-lg md:text-xl font-bold tracking-tight">Rendimiento y Velocidad (Lighthouse)</span>
+              </li>
+              <li class="flex items-center gap-5 group/item p-4 -mx-4 rounded-2xl hover:bg-brand-white/5 transition-all duration-500">
+                <div
+                  class="bg-brand-white/8 p-4 rounded-xl text-brand-orange group-hover/item:bg-brand-orange/20 group-hover/item:scale-110 transition-all duration-500 shrink-0">
+                  <mat-icon class="scale-125">cleaning_services</mat-icon>
+                </div>
+                <span class="text-lg md:text-xl font-bold tracking-tight">Diseño Limpio y Simple</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 7. FAQ -->
-  <section id="faq" class="section-padding bg-brand-gray/5 relative overflow-hidden">
+  <section id="faq" class="section-padding bg-brand-bg relative overflow-hidden">
     <!-- Subtle background decoration -->
-    <div class="absolute top-1/2 -left-24 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -left-32 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 right-0 w-[300px] h-[300px] bg-brand-blue-light/5 rounded-full blur-[80px]"></div>
 
     <div class="max-w-4xl mx-auto relative z-10">
-      <div class="text-center mb-24 section-header">
-        <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em] mb-4">Claridad</h2>
-        <h3 class="text-4xl md:text-6xl font-black text-brand-blue-dark tracking-tighter">Preguntas Frecuentes</h3>
+      <div class="text-center mb-20 md:mb-28 section-header">
+        <div class="flex items-center justify-center gap-3 mb-5">
+          <div class="h-px w-8 bg-brand-orange"></div>
+          <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Claridad</h2>
+          <div class="h-px w-8 bg-brand-orange"></div>
+        </div>
+        <h3 class="text-4xl md:text-6xl lg:text-7xl font-black text-brand-blue-dark tracking-[-0.03em]">Preguntas Frecuentes</h3>
       </div>
 
-      <mat-accordion class="faq-accordion space-y-8" multi>
+      <mat-accordion class="faq-accordion space-y-5" multi>
         <!-- Item 1 -->
         <mat-expansion-panel
-          class="!rounded-3xl !shadow-none !border !border-brand-gray/20 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/30 hover:premium-shadow">
+          class="!rounded-2xl !shadow-none !border !border-brand-blue-dark/6 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/20 hover:premium-shadow">
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
-            <mat-panel-title class="flex items-center gap-6 md:gap-8">
+            <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-lg md:text-xl opacity-20 group-hover:opacity-100 transition-opacity">01</span>
-              <span class="!font-bold !text-base md:!text-xl text-brand-blue-dark tracking-tight leading-tight">
+                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">01</span>
+              <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Qué es una Landing Page y por qué la necesito?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light text-base md:text-lg leading-relaxed font-light">
-              Es una página web diseñada con un único objetivo: <strong>lograr una conversión</strong> (registro o
+            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+              Es una página web diseñada con un único objetivo: <strong class="text-brand-blue-dark font-semibold">lograr una conversión</strong> (registro o
               venta).
               Elimina distracciones para guiar al usuario hacia una acción específica, ideal para potenciar tus campañas
               de marketing.
@@ -371,19 +419,19 @@
 
         <!-- Item 2 -->
         <mat-expansion-panel
-          class="!rounded-3xl !shadow-none !border !border-brand-gray/20 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/30 hover:premium-shadow">
+          class="!rounded-2xl !shadow-none !border !border-brand-blue-dark/6 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/20 hover:premium-shadow">
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
-            <mat-panel-title class="flex items-center gap-6 md:gap-8">
+            <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-lg md:text-xl opacity-20 group-hover:opacity-100 transition-opacity">02</span>
-              <span class="!font-bold !text-base md:!text-xl text-brand-blue-dark tracking-tight leading-tight">
+                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">02</span>
+              <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Mi sitio funcionará bien en celulares?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light text-base md:text-lg leading-relaxed font-light">
-              Absolutamente. Sigo un enfoque <strong>Mobile-First</strong> en cada línea de código.
+            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+              Absolutamente. Sigo un enfoque <strong class="text-brand-blue-dark font-semibold">Mobile-First</strong> en cada línea de código.
               Esto garantiza que la experiencia sea igual de fluida, rápida y atractiva en cualquier dispositivo.
             </p>
           </div>
@@ -391,20 +439,20 @@
 
         <!-- Item 3 -->
         <mat-expansion-panel
-          class="!rounded-3xl !shadow-none !border !border-brand-gray/20 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/30 hover:premium-shadow">
+          class="!rounded-2xl !shadow-none !border !border-brand-blue-dark/6 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/20 hover:premium-shadow">
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
-            <mat-panel-title class="flex items-center gap-6 md:gap-8">
+            <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-lg md:text-xl opacity-20 group-hover:opacity-100 transition-opacity">03</span>
-              <span class="!font-bold !text-base md:!text-xl text-brand-blue-dark tracking-tight leading-tight">
+                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">03</span>
+              <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Qué tecnologías utilizas?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light text-base md:text-lg leading-relaxed font-light">
-              Utilizo un stack moderno: <strong>HTML5, CSS3, JavaScript y Angular</strong>.
-              Para el movimiento, implemento animaciones cinemáticas con <strong>GSAP</strong>, asegurando rendimiento y
+            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+              Utilizo un stack moderno: <strong class="text-brand-blue-dark font-semibold">HTML5, CSS3, JavaScript y Angular</strong>.
+              Para el movimiento, implemento animaciones cinemáticas con <strong class="text-brand-blue-dark font-semibold">GSAP</strong>, asegurando rendimiento y
               precisión técnica.
             </p>
           </div>
@@ -412,19 +460,19 @@
 
         <!-- Item 4 -->
         <mat-expansion-panel
-          class="!rounded-3xl !shadow-none !border !border-brand-gray/20 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/30 hover:premium-shadow">
+          class="!rounded-2xl !shadow-none !border !border-brand-blue-dark/6 !bg-brand-white overflow-hidden group transition-all duration-500 hover:!border-brand-orange/20 hover:premium-shadow">
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
-            <mat-panel-title class="flex items-center gap-6 md:gap-8">
+            <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-lg md:text-xl opacity-20 group-hover:opacity-100 transition-opacity">04</span>
-              <span class="!font-bold !text-base md:!text-xl text-brand-blue-dark tracking-tight leading-tight">
+                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">04</span>
+              <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Ofreces soporte después de la entrega?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light text-base md:text-lg leading-relaxed font-light">
-              Sí. Todos mis proyectos incluyen <strong>15 días de soporte técnico gratuito</strong>
+            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+              Sí. Todos mis proyectos incluyen <strong class="text-brand-blue-dark font-semibold">15 días de soporte técnico gratuito</strong>
               para resolver dudas o realizar ajustes menores, asegurando que tu lanzamiento sea todo un éxito.
             </p>
           </div>
@@ -438,9 +486,9 @@
 <!-- 8. Footer -->
 <footer id="contacto" class="bg-brand-blue-dark text-brand-white py-24 md:py-32 px-6 relative overflow-hidden">
   <!-- Decorative background elements -->
-  <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 left-1/4 w-64 h-64 bg-brand-blue-light/5 rounded-full blur-3xl"></div>
-  <div class="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-brand-white/10 to-transparent">
+  <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-[120px]"></div>
+  <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-brand-blue-light/5 rounded-full blur-[80px]"></div>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-white/8 to-transparent">
   </div>
 
   <div class="max-w-7xl mx-auto relative z-10">
@@ -448,23 +496,23 @@
       <!-- Brand & About -->
       <div class="flex flex-col items-center lg:items-start">
         <img src="images/logo-guillermohalvarado.png" alt="Guillermo HAlvarado"
-          class="h-12 md:h-14 mb-8 object-contain brightness-0 invert" />
-        <p class="text-brand-gray/80 text-lg leading-relaxed max-w-sm mb-10 font-light">
+          class="h-12 md:h-14 mb-8 object-contain brightness-0 invert opacity-90" />
+        <p class="text-brand-gray/60 text-base md:text-lg leading-relaxed max-w-sm mb-10">
           Fusionando ingeniería y diseño para crear experiencias digitales <strong
-            class="text-brand-white font-medium">memorables, funcionales y de alto impacto.</strong>
+            class="text-brand-white/90 font-medium">memorables, funcionales y de alto impacto.</strong>
         </p>
-        <div class="flex gap-4">
+        <div class="flex gap-3">
           <a href="https://www.linkedin.com/in/guillermoHAlvarado" target="_blank"
-            class="w-12 h-12 rounded-xl bg-brand-white/5 border border-brand-white/10 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
-            <mat-icon class="text-brand-white group-hover:text-brand-white">link</mat-icon>
+            class="w-11 h-11 rounded-xl bg-brand-white/5 border border-brand-white/8 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
+            <mat-icon class="text-brand-white/70 group-hover:text-brand-white !text-[20px]">link</mat-icon>
           </a>
           <a href="https://github.com/guill3rm0hdz" target="_blank"
-            class="w-12 h-12 rounded-xl bg-brand-white/5 border border-brand-white/10 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
-            <mat-icon class="text-brand-white group-hover:text-brand-white">code</mat-icon>
+            class="w-11 h-11 rounded-xl bg-brand-white/5 border border-brand-white/8 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
+            <mat-icon class="text-brand-white/70 group-hover:text-brand-white !text-[20px]">code</mat-icon>
           </a>
           <a href="https://www.behance.net/guillermohalvarado" target="_blank"
-            class="w-12 h-12 rounded-xl bg-brand-white/5 border border-brand-white/10 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
-            <mat-icon class="text-brand-white group-hover:text-brand-white">brush</mat-icon>
+            class="w-11 h-11 rounded-xl bg-brand-white/5 border border-brand-white/8 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
+            <mat-icon class="text-brand-white/70 group-hover:text-brand-white !text-[20px]">brush</mat-icon>
           </a>
         </div>
       </div>
@@ -472,28 +520,28 @@
       <!-- Quick Navigation -->
       <div class="flex flex-col items-center lg:items-start gap-6">
         <span class="text-brand-orange font-black uppercase tracking-[0.2em] text-xs">Navegación</span>
-        <ul class="flex flex-col gap-4 text-brand-gray/60">
+        <ul class="flex flex-col gap-4 text-brand-gray/50">
           <li><button (click)="scrollTo('inicio')"
-              class="hover:text-brand-orange transition-colors duration-300">Inicio</button></li>
+              class="hover:text-brand-orange transition-colors duration-300 text-sm">Inicio</button></li>
           <li><button (click)="scrollTo('especializacion')"
-              class="hover:text-brand-orange transition-colors duration-300">Especialización</button></li>
+              class="hover:text-brand-orange transition-colors duration-300 text-sm">Especialización</button></li>
           <li><button (click)="scrollTo('metodologia')"
-              class="hover:text-brand-orange transition-colors duration-300">Metodología</button></li>
+              class="hover:text-brand-orange transition-colors duration-300 text-sm">Metodología</button></li>
           <li><button (click)="scrollTo('faq')"
-              class="hover:text-brand-orange transition-colors duration-300">FAQ</button></li>
+              class="hover:text-brand-orange transition-colors duration-300 text-sm">FAQ</button></li>
         </ul>
       </div>
 
       <!-- Contact & CTA -->
       <div class="flex flex-col gap-6 lg:text-right lg:items-end items-center">
         <span class="text-brand-orange font-black uppercase tracking-[0.2em] text-xs">¿Tienes un proyecto?</span>
-        <a href="mailto:hola@guillermohalvarado.com"
-          class="text-4xl md:text-5xl lg:text-6xl font-black hover:text-brand-orange transition-colors duration-500 tracking-tighter leading-none mb-4">
-          Hablemos.
+        <a href="https://www.linkedin.com/in/guillermoHAlvarado" target="_blank"
+          class="text-4xl md:text-5xl lg:text-6xl font-black hover:text-brand-orange transition-colors duration-500 tracking-[-0.03em] leading-none mb-4 group">
+          Hablemos<span class="text-brand-orange group-hover:text-brand-white transition-colors duration-500">.</span>
         </a>
-        <p class="text-brand-gray/60 font-light max-w-xs text-center lg:text-right">
+        <p class="text-brand-gray/40 font-light max-w-xs text-center lg:text-right text-sm leading-relaxed">
           Playa del Carmen, Quintana Roo, México.<br />
-          Disponible para proyectos en todo el mundo.
+          Proyectos en todo el mundo.
         </p>
       </div>
     </div>
@@ -501,8 +549,8 @@
     <!-- Bottom Bar -->
     <div class="pt-12 border-t border-brand-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
       <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8 order-2 md:order-1">
-        <p class="text-brand-gray/40 text-sm font-light text-center md:text-left">
-          &copy; 2026 <span class="text-brand-gray/60 font-medium">Guillermo HAlvarado</span>. Todos los derechos
+        <p class="text-brand-gray/30 text-xs font-light text-center md:text-left">
+          &copy; 2026 <span class="text-brand-gray/50 font-medium">Guillermo HAlvarado</span>. Todos los derechos
           reservados.
         </p>
         <div class="flex gap-6">
@@ -512,7 +560,7 @@
             class="text-brand-gray/30 hover:text-brand-orange text-xs uppercase tracking-widest transition-colors font-bold">Términos</a>
         </div>
       </div>
-      <div class="flex gap-8 text-xs font-bold uppercase tracking-widest text-brand-gray/30 order-1 md:order-2">
+      <div class="flex gap-8 text-xs font-bold uppercase tracking-widest text-brand-gray/20 order-1 md:order-2">
         <span class="hover:text-brand-orange transition-colors cursor-default">Diseño</span>
         <span class="hover:text-brand-orange transition-colors cursor-default">Código</span>
         <span class="hover:text-brand-orange transition-colors cursor-default">Estrategia</span>

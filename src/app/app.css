@@ -1,11 +1,12 @@
 /* Smooth transitions for header elements */
 mat-toolbar {
   transition: all 0.5s var(--ease-premium) !important;
+  will-change: transform, height;
 }
 
 mat-toolbar button, 
 mat-toolbar a {
-  transition: all 0.3s ease !important;
+  transition: all 0.3s var(--ease-smooth) !important;
 }
 
 /* Ensure buttons are solid on the header */
@@ -15,6 +16,22 @@ mat-toolbar a {
 
 /* Enhanced Glass effect */
 .backdrop-blur-2xl {
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+}
+
+/* Premium mat-expansion-panel overrides */
+.faq-accordion .mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+.faq-accordion .mat-expansion-indicator::after {
+  color: var(--color-brand-orange) !important;
+  border-color: var(--color-brand-orange) !important;
+}
+
+/* Remove Material Design ripple for cleaner look */
+.mat-mdc-button .mat-mdc-button-persistent-ripple,
+.mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
+  display: none;
 }
