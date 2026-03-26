@@ -50,11 +50,6 @@ import { MatIconModule } from '@angular/material/icon';
             <p class="text-xl leading-relaxed">
               Implemento protocolos de seguridad estándar (SSL) para asegurar que cualquier interacción a través de este sitio sea privada y segura.
             </p>
-
-            <h2 class="text-2xl font-black uppercase tracking-widest text-brand-orange mt-16 mb-8 text-sm">05. Contacto</h2>
-            <p class="text-xl leading-relaxed">
-              Para cualquier duda sobre tus datos, puedes contactarme directamente en <a href="mailto:hola@guillermohalvarado.com" class="text-brand-orange hover:underline font-bold">hola@guillermohalvarado.com</a>.
-            </p>
           </div>
         </section>
       </main>
@@ -71,4 +66,4 @@ import { MatIconModule } from '@angular/material/icon';
     :host { display: block; }
   `]
 })
-export class PrivacyComponent {}
+export class PrivacyComponent { }
