@@ -24,7 +24,7 @@
   </div>
 
   <!-- Mobile Toggle -->
-  <button mat-icon-button (click)="toggleMenu()"
+  <button mat-icon-button (click)="toggleMenu()" aria-label="Abrir menú"
     class="xl:!hidden !text-brand-blue-dark flex items-center justify-center hover:!bg-brand-blue-dark/5 !rounded-xl transition-all duration-300">
     <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
   </button>
@@ -33,7 +33,7 @@
 <!-- Mobile Overlay -->
 <div
   class="mobile-menu-overlay fixed inset-0 z-[60] bg-brand-blue-dark translate-x-full xl:hidden flex flex-col justify-center items-center gap-10 p-12">
-  <button (click)="toggleMenu()"
+  <button (click)="toggleMenu()" aria-label="Cerrar menú"
     class="absolute top-6 right-6 text-brand-white p-4 hover:text-brand-orange transition-colors duration-300">
     <mat-icon class="scale-150">close</mat-icon>
   </button>
@@ -49,7 +49,7 @@
       class="menu-link text-3xl font-black text-brand-orange border-2 border-brand-orange/30 px-8 py-4 rounded-3xl">Portafolio</a>
   </nav>
 
-  <div class="absolute bottom-12 text-brand-white/20 font-black uppercase tracking-[0.4em] text-xs">
+  <div class="absolute bottom-12 text-brand-white/60 font-black uppercase tracking-[0.4em] text-xs">
     Guillermo HAlvarado
   </div>
 </div>
@@ -149,11 +149,11 @@
       <div class="mb-20 md:mb-28 section-header">
         <div class="flex items-center gap-3 mb-5">
           <div class="h-px w-8 bg-brand-orange"></div>
-          <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Lo que hago</h2>
+          <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em]">Lo que hago</h2>
         </div>
         <h3 class="text-4xl md:text-6xl lg:text-7xl font-black text-brand-white mb-8 tracking-[-0.03em] leading-[1.05]">
           Especialización</h3>
-        <p class="text-brand-gray/80 text-lg md:text-xl max-w-2xl leading-relaxed">Transformo ideas en activos digitales
+        <p class="text-brand-gray/90 text-lg md:text-xl max-w-2xl leading-relaxed">Transformo ideas en activos digitales
           donde la
           ingeniería se encuentra con la narrativa visual para guiar al usuario hacia el siguiente paso.</p>
       </div>
@@ -264,14 +264,14 @@
         <div class="max-w-2xl">
           <div class="flex items-center gap-3 mb-5">
             <div class="h-px w-8 bg-brand-orange"></div>
-            <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Proceso</h2>
+            <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em]">Proceso</h2>
           </div>
           <h3
             class="text-4xl md:text-6xl lg:text-7xl font-black text-brand-blue-dark tracking-[-0.03em] leading-[1.05]">
             Mi Metodología de Trabajo
           </h3>
         </div>
-        <p class="text-brand-blue-light/70 text-lg md:text-xl max-w-md leading-relaxed">Sigo un proceso claro para
+        <p class="text-brand-blue-light/90 text-lg md:text-xl max-w-md leading-relaxed">Sigo un proceso claro para
           transformar
           requerimientos en productos digitales funcionales.</p>
       </div>
@@ -335,13 +335,13 @@
         <div class="quality-content md:w-1/2">
           <div class="flex items-center gap-3 mb-5">
             <div class="h-px w-8 bg-brand-orange"></div>
-            <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Estrategia</h2>
+            <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em]">Estrategia</h2>
           </div>
           <h3
             class="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-brand-blue-dark tracking-[-0.03em] leading-[1.05]">
             Conocimientos
             Estratégicos</h3>
-          <p class="text-brand-blue-light/60 text-lg md:text-xl mb-12 leading-relaxed">
+          <p class="text-brand-blue-light/90 text-lg md:text-xl mb-12 leading-relaxed">
             Mi experiencia me permite aplicar criterios técnicos que mejoran la efectividad de cada sitio web.
           </p>
           <ul class="space-y-6">
@@ -426,7 +426,7 @@
       <div class="text-center mb-20 md:mb-28 section-header">
         <div class="flex items-center justify-center gap-3 mb-5">
           <div class="h-px w-8 bg-brand-orange"></div>
-          <h2 class="text-brand-orange text-xs font-black uppercase tracking-[0.4em]">Claridad</h2>
+          <h2 class="text-brand-orange text-sm font-black uppercase tracking-[0.4em]">Claridad</h2>
           <div class="h-px w-8 bg-brand-orange"></div>
         </div>
         <h3 class="text-4xl md:text-6xl lg:text-7xl font-black text-brand-blue-dark tracking-[-0.03em]">Preguntas
@@ -440,14 +440,14 @@
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
             <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">01</span>
+                class="text-brand-orange font-black text-base md:text-lg opacity-60 group-hover:opacity-100 transition-all duration-500 tabular-nums">01</span>
               <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Qué es una Landing Page y por qué la necesito?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+            <p class="text-brand-blue-light/90 text-sm md:text-base leading-[1.8]">
               Es una página web diseñada con un único objetivo: <strong
                 class="text-brand-blue-dark font-semibold">lograr una conversión</strong> (registro o
               venta).
@@ -463,14 +463,14 @@
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
             <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">02</span>
+                class="text-brand-orange font-black text-base md:text-lg opacity-60 group-hover:opacity-100 transition-all duration-500 tabular-nums">02</span>
               <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Mi sitio funcionará bien en celulares?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+            <p class="text-brand-blue-light/90 text-sm md:text-base leading-[1.8]">
               Absolutamente. Sigo un enfoque <strong class="text-brand-blue-dark font-semibold">Mobile-First</strong> en
               cada línea de código.
               Esto garantiza que la experiencia sea igual de fluida, rápida y atractiva en cualquier dispositivo.
@@ -484,14 +484,14 @@
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
             <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">03</span>
+                class="text-brand-orange font-black text-base md:text-lg opacity-60 group-hover:opacity-100 transition-all duration-500 tabular-nums">03</span>
               <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Qué tecnologías utilizas?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+            <p class="text-brand-blue-light/90 text-sm md:text-base leading-[1.8]">
               Utilizo un stack moderno: <strong class="text-brand-blue-dark font-semibold">HTML5, CSS3, JavaScript y
                 Angular</strong>.
               Para el movimiento, implemento animaciones cinemáticas con <strong
@@ -507,14 +507,14 @@
           <mat-expansion-panel-header class="!h-20 md:!h-24 px-8 md:px-10">
             <mat-panel-title class="flex items-center gap-5 md:gap-8">
               <span
-                class="text-brand-orange font-black text-base md:text-lg opacity-30 group-hover:opacity-100 transition-all duration-500 tabular-nums">04</span>
+                class="text-brand-orange font-black text-base md:text-lg opacity-60 group-hover:opacity-100 transition-all duration-500 tabular-nums">04</span>
               <span class="!font-bold !text-sm md:!text-lg text-brand-blue-dark tracking-tight leading-tight">
                 ¿Ofreces soporte después de la entrega?
               </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="px-8 md:px-10 pb-8 md:pl-24">
-            <p class="text-brand-blue-light/60 text-sm md:text-base leading-[1.8]">
+            <p class="text-brand-blue-light/90 text-sm md:text-base leading-[1.8]">
               Sí. Todos mis proyectos incluyen <strong class="text-brand-blue-dark font-semibold">15 días de soporte
                 técnico gratuito</strong>
               para resolver dudas o realizar ajustes menores, asegurando que tu lanzamiento sea todo un éxito.
@@ -539,22 +539,22 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 md:gap-24 mb-20 text-center lg:text-left">
       <!-- Brand & About -->
       <div class="flex flex-col items-center lg:items-start">
-        <img src="images/logo-guillermohalvarado.webp" alt="Guillermo HAlvarado"
+        <img src="images/logo-guillermohalvarado.webp" alt="Guillermo HAlvarado" width="226" height="56"
           class="h-12 md:h-14 mb-8 object-contain brightness-0 invert opacity-90" />
-        <p class="text-brand-gray/60 text-base md:text-lg leading-relaxed max-w-sm mb-10">
+        <p class="text-brand-white/70 text-base md:text-lg leading-relaxed max-w-sm mb-10">
           Fusionando ingeniería y diseño para crear experiencias digitales <strong
             class="text-brand-white/90 font-medium">memorables, funcionales y de alto impacto.</strong>
         </p>
         <div class="flex gap-3">
-          <a href="https://www.linkedin.com/in/guillermoHAlvarado" target="_blank"
+          <a href="https://www.linkedin.com/in/guillermoHAlvarado" target="_blank" aria-label="LinkedIn"
             class="w-11 h-11 rounded-xl bg-brand-white/5 border border-brand-white/8 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
             <mat-icon class="text-brand-white/70 group-hover:text-brand-white !text-[20px]">link</mat-icon>
           </a>
-          <a href="https://github.com/guill3rm0hdz" target="_blank"
+          <a href="https://github.com/guill3rm0hdz" target="_blank" aria-label="GitHub"
             class="w-11 h-11 rounded-xl bg-brand-white/5 border border-brand-white/8 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
             <mat-icon class="text-brand-white/70 group-hover:text-brand-white !text-[20px]">code</mat-icon>
           </a>
-          <a href="https://www.behance.net/guillermohalvarado" target="_blank"
+          <a href="https://www.behance.net/guillermohalvarado" target="_blank" aria-label="Behance"
             class="w-11 h-11 rounded-xl bg-brand-white/5 border border-brand-white/8 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:scale-110 transition-all duration-500 group">
             <mat-icon class="text-brand-white/70 group-hover:text-brand-white !text-[20px]">brush</mat-icon>
           </a>
@@ -564,7 +564,7 @@
       <!-- Quick Navigation -->
       <div class="flex flex-col items-center lg:items-start gap-6">
         <span class="text-brand-orange font-black uppercase tracking-[0.2em] text-xs">Navegación</span>
-        <ul class="flex flex-col gap-4 text-brand-gray/50">
+        <ul class="flex flex-col gap-4 text-brand-white/70">
           <li><button (click)="scrollTo('inicio')"
               class="hover:text-brand-orange transition-colors duration-300 text-sm">Inicio</button></li>
           <li><button (click)="scrollTo('especializacion')"
@@ -583,7 +583,7 @@
           class="text-4xl md:text-5xl lg:text-6xl font-black hover:text-brand-orange transition-colors duration-500 tracking-[-0.03em] leading-none mb-4 group">
           Hablemos<span class="text-brand-orange group-hover:text-brand-white transition-colors duration-500">.</span>
         </a>
-        <p class="text-brand-gray/40 font-light max-w-xs text-center lg:text-right text-sm leading-relaxed">
+        <p class="text-brand-white/60 font-light max-w-xs text-center lg:text-right text-sm leading-relaxed">
           Playa del Carmen, Quintana Roo, México.<br />
           Proyectos en todo el mundo.
         </p>
@@ -593,18 +593,18 @@
     <!-- Bottom Bar -->
     <div class="pt-12 border-t border-brand-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
       <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8 order-2 md:order-1">
-        <p class="text-brand-gray/30 text-xs font-light text-center md:text-left">
-          &copy; 2026 <span class="text-brand-gray/50 font-medium">Guillermo HAlvarado</span>. Todos los derechos
+        <p class="text-brand-white/50 text-xs font-light text-center md:text-left">
+          &copy; 2026 <span class="text-brand-white/80 font-medium">Guillermo HAlvarado</span>. Todos los derechos
           reservados.
         </p>
         <div class="flex gap-6">
           <a routerLink="/politica-de-privacidad"
-            class="text-brand-gray/30 hover:text-brand-orange text-xs uppercase tracking-widest transition-colors font-bold">Privacidad</a>
+            class="text-brand-white/50 hover:text-brand-orange text-xs uppercase tracking-widest transition-colors font-bold">Privacidad</a>
           <a routerLink="/terminos-y-condiciones"
-            class="text-brand-gray/30 hover:text-brand-orange text-xs uppercase tracking-widest transition-colors font-bold">Términos</a>
+            class="text-brand-white/50 hover:text-brand-orange text-xs uppercase tracking-widest transition-colors font-bold">Términos</a>
         </div>
       </div>
-      <div class="flex gap-8 text-xs font-bold uppercase tracking-widest text-brand-gray/20 order-1 md:order-2">
+      <div class="flex gap-8 text-xs font-bold uppercase tracking-widest text-brand-white/40 order-1 md:order-2">
         <span class="hover:text-brand-orange transition-colors cursor-default">Diseño</span>
         <span class="hover:text-brand-orange transition-colors cursor-default">Código</span>
         <span class="hover:text-brand-orange transition-colors cursor-default">Estrategia</span>
