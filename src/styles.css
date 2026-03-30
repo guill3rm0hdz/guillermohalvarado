@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "lenis/dist/lenis.css";
 @import "tailwindcss";
 
 @theme {
@@ -135,9 +136,34 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth — disabled; Lenis handles smooth scroll */
   @apply antialiased text-brand-blue-dark;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  /* Prevent horizontal overflow from scroll animations */
+  overflow-x: hidden;
+}
+
+/* ─── Anti-Layout-Shift: GPU compositing for animated elements ─── */
+.section-header,
+.service-card,
+.step-item,
+.quality-content,
+.quality-image,
+.faq-accordion mat-expansion-panel,
+footer {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Hero elements prepared for GSAP reveal */
+.hero-badge,
+.hero-title,
+.hero-subtitle,
+.hero-cta,
+.hero-image {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 body {

@@ -27,6 +27,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private lenis: any = null;
   private scrollTriggers: any[] = [];
+  private rafId: number | null = null;
   
   isMenuOpen = false;
 
@@ -73,13 +74,22 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => this.initAnimations(), 100);
+      // Use requestAnimationFrame to wait for first paint, then init
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          this.initAnimations();
+        });
+      });
     }
   }
 
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
       this.scrollTriggers.forEach(st => st.kill?.());
+      this.scrollTriggers = [];
+      if (this.rafId != null) {
+        cancelAnimationFrame(this.rafId);
+      }
       this.lenis?.destroy();
     }
   }
@@ -94,172 +104,197 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-    // 0. Smooth Scroll (Lenis)
+    // ──────────────────────────────────────────────
+    // 0. LENIS SMOOTH SCROLL — optimized for responsiveness
+    // ──────────────────────────────────────────────
     this.lenis = new Lenis({
-      duration: 1.4,
+      duration: 1.0,                  // Shorter = more responsive
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      touchMultiplier: 1.8,           // Responsive touch on mobile
+      infinite: false,
     });
 
+    // Sync Lenis → ScrollTrigger
     this.lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time: number) => {
-      this.lenis.raf(time * 1000);
-    });
+
+    // Use a proper rAF loop for Lenis (more efficient than gsap.ticker)
+    const raf = (time: number) => {
+      this.lenis?.raf(time);
+      this.rafId = requestAnimationFrame(raf);
+    };
+    this.rafId = requestAnimationFrame(raf);
+
+    // Disable gsap lag smoothing so ScrollTrigger stays in lock-step
     gsap.ticker.lagSmoothing(0);
 
     const el = this.elementRef.nativeElement;
 
-    // 0.5. Smooth page entrance
-    gsap.from(el, {
-      opacity: 0,
-      duration: 1,
-      ease: 'power2.out'
-    });
-
-    // 1. Hero Entrance — Cinematic Staggered Reveal
-    const heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    
-    // Hero badge
-    heroTl.fromTo(el.querySelector('.hero-badge'), 
-      { y: 20, opacity: 0, scale: 0.9 }, 
-      { y: 0, opacity: 1, scale: 1, duration: 1 }
-    )
-    // Main title with split text effect
-    .fromTo(el.querySelector('.hero-title'), 
-      { y: 80, opacity: 0, clipPath: 'inset(0 0 100% 0)' }, 
-      { y: 0, opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 1.5 }, 
-      '-=0.7'
-    )
-    .fromTo(el.querySelector('.hero-subtitle'), 
-      { y: 30, opacity: 0 }, 
-      { y: 0, opacity: 1, duration: 1.2 }, 
-      '-=1'
-    )
-    .fromTo(el.querySelector('.hero-cta'), 
-      { y: 20, opacity: 0 }, 
-      { y: 0, opacity: 1, duration: 0.9 }, 
-      '-=0.8'
-    )
-    .fromTo(el.querySelector('.hero-image'), 
-      { scale: 0.85, opacity: 0, rotate: 8, y: 30 }, 
-      { scale: 1, opacity: 1, rotate: 3, y: 0, duration: 1.8 }, 
-      '-=1.5'
+    // ──────────────────────────────────────────────
+    // 0.5. Smooth page entrance (fade the whole page in)
+    // ──────────────────────────────────────────────
+    gsap.fromTo(el, 
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8, ease: 'power2.out' }
     );
 
-    // Hero background orbs gentle float
-    gsap.to(el.querySelector('.hero-bg-1'), {
-      y: -30,
-      x: 20,
-      duration: 8,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true
-    });
-    gsap.to(el.querySelector('.hero-bg-2'), {
-      y: 25,
-      x: -15,
-      duration: 10,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true
-    });
-    gsap.to(el.querySelector('.hero-bg-3'), {
-      y: -20,
-      x: 10,
-      duration: 12,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true
+    // ──────────────────────────────────────────────
+    // 1. HERO — Cinematic staggered reveal
+    // ──────────────────────────────────────────────
+    const heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    
+    const heroBadge = el.querySelector('.hero-badge');
+    const heroTitle = el.querySelector('.hero-title');
+    const heroSubtitle = el.querySelector('.hero-subtitle');
+    const heroCta = el.querySelector('.hero-cta');
+    const heroImage = el.querySelector('.hero-image');
+
+    if (heroBadge) {
+      heroTl.fromTo(heroBadge, 
+        { y: 20, opacity: 0, scale: 0.9 }, 
+        { y: 0, opacity: 1, scale: 1, duration: 1 }
+      );
+    }
+    if (heroTitle) {
+      heroTl.fromTo(heroTitle, 
+        { y: 60, opacity: 0, clipPath: 'inset(0 0 100% 0)' }, 
+        { y: 0, opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 1.4 }, 
+        '-=0.7'
+      );
+    }
+    if (heroSubtitle) {
+      heroTl.fromTo(heroSubtitle, 
+        { y: 25, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1.0 }, 
+        '-=0.9'
+      );
+    }
+    if (heroCta) {
+      heroTl.fromTo(heroCta, 
+        { y: 20, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8 }, 
+        '-=0.7'
+      );
+    }
+    if (heroImage) {
+      heroTl.fromTo(heroImage, 
+        { scale: 0.88, opacity: 0, rotate: 6, y: 20 }, 
+        { scale: 1, opacity: 1, rotate: 3, y: 0, duration: 1.6 }, 
+        '-=1.2'
+      );
+    }
+
+    // Hero background orbs — gentle floating
+    const heroOrbs = [
+      { sel: '.hero-bg-1', y: -30, x: 20, dur: 8 },
+      { sel: '.hero-bg-2', y: 25, x: -15, dur: 10 },
+      { sel: '.hero-bg-3', y: -20, x: 10, dur: 12 },
+    ];
+    heroOrbs.forEach(({ sel, y, x, dur }) => {
+      const orb = el.querySelector(sel);
+      if (orb) {
+        gsap.to(orb, { y, x, duration: dur, ease: 'sine.inOut', repeat: -1, yoyo: true });
+      }
     });
 
-    // Hero decorative elements float
+    // Hero decorative elements
     const heroDecor = el.querySelector('.hero-decor');
     if (heroDecor) {
       gsap.to(heroDecor, {
-        y: -15,
-        rotation: -8,
-        duration: 6,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true
+        y: -15, rotation: -8, duration: 6,
+        ease: 'sine.inOut', repeat: -1, yoyo: true
       });
     }
-
     const heroFloat = el.querySelector('.hero-float');
     if (heroFloat) {
       gsap.to(heroFloat, {
-        y: -10,
-        rotation: 18,
-        duration: 5,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true
+        y: -10, rotation: 18, duration: 5,
+        ease: 'sine.inOut', repeat: -1, yoyo: true
       });
     }
 
-    // 2. Section Headers — Parallax Reveal with line reveal
+    // ──────────────────────────────────────────────
+    // 2. SECTION HEADERS — scroll-triggered reveal (once)
+    // ──────────────────────────────────────────────
     gsap.utils.toArray('.section-header').forEach((header: any) => {
+      // Set initial hidden state via GSAP (GPU-friendly)
+      gsap.set(header, { y: 40, opacity: 0 });
+
       const st = ScrollTrigger.create({
         trigger: header,
         start: 'top 88%',
+        once: true,
         onEnter: () => {
-          gsap.fromTo(header,
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.2, ease: 'expo.out' }
-          );
+          gsap.to(header, {
+            y: 0, opacity: 1,
+            duration: 1.0, ease: 'expo.out'
+          });
         }
       });
       this.scrollTriggers.push(st);
     });
 
-    // 3. Service Cards — Elegant staggered reveal
+    // ──────────────────────────────────────────────
+    // 3. SERVICE CARDS — staggered reveal (once)
+    // ──────────────────────────────────────────────
     const serviceCards = el.querySelectorAll('.service-card');
     if (serviceCards.length) {
+      gsap.set(serviceCards, { y: 60, opacity: 0, scale: 0.96 });
+
       const st = ScrollTrigger.create({
         trigger: '#especializacion',
-        start: 'top 65%',
+        start: 'top 70%',
+        once: true,
         onEnter: () => {
-          gsap.fromTo(serviceCards,
-            { y: 80, opacity: 0, scale: 0.95 },
-            { y: 0, opacity: 1, scale: 1, duration: 1.2, stagger: 0.25, ease: 'expo.out' }
-          );
+          gsap.to(serviceCards, {
+            y: 0, opacity: 1, scale: 1,
+            duration: 1.0, stagger: 0.2, ease: 'expo.out'
+          });
         }
       });
       this.scrollTriggers.push(st);
     }
 
-    // 4. Methodology Steps — Cascading reveal with scale
+    // ──────────────────────────────────────────────
+    // 4. METHODOLOGY STEPS — cascading reveal (once)
+    // ──────────────────────────────────────────────
     const steps = el.querySelectorAll('.step-item');
-    steps.forEach((step: any, i: number) => {
-      const st = ScrollTrigger.create({
-        trigger: step,
-        start: 'top 85%',
-        onEnter: () => {
-          gsap.fromTo(step,
-            { y: 40, opacity: 0, scale: 0.92 },
-            {
-              y: 0, opacity: 1, scale: 1, 
-              duration: 0.9, 
-              delay: i * 0.12,
-              ease: 'back.out(1.4)'
-            }
-          );
-        }
-      });
-      this.scrollTriggers.push(st);
-    });
+    if (steps.length) {
+      gsap.set(steps, { y: 35, opacity: 0, scale: 0.94 });
 
-    // 5. Quality Content — Horizontal reveal
+      steps.forEach((step: any, i: number) => {
+        const st = ScrollTrigger.create({
+          trigger: step,
+          start: 'top 88%',
+          once: true,
+          onEnter: () => {
+            gsap.to(step, {
+              y: 0, opacity: 1, scale: 1,
+              duration: 0.8,
+              delay: i * 0.08,
+              ease: 'back.out(1.2)'
+            });
+          }
+        });
+        this.scrollTriggers.push(st);
+      });
+    }
+
+    // ──────────────────────────────────────────────
+    // 5. QUALITY SECTION — directional reveals (once)
+    // ──────────────────────────────────────────────
     const qualityContent = el.querySelector('.quality-content');
     if (qualityContent) {
+      gsap.set(qualityContent, { x: -50, opacity: 0 });
+
       const st = ScrollTrigger.create({
         trigger: qualityContent,
-        start: 'top 78%',
+        start: 'top 80%',
+        once: true,
         onEnter: () => {
-          gsap.fromTo(qualityContent,
-            { x: -60, opacity: 0 },
-            { x: 0, opacity: 1, duration: 1.3, ease: 'expo.out' }
-          );
+          gsap.to(qualityContent, {
+            x: 0, opacity: 1, duration: 1.1, ease: 'expo.out'
+          });
         }
       });
       this.scrollTriggers.push(st);
@@ -267,69 +302,87 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     const qualityImage = el.querySelector('.quality-image');
     if (qualityImage) {
+      gsap.set(qualityImage, { x: 50, opacity: 0 });
+
       const st = ScrollTrigger.create({
         trigger: qualityImage,
-        start: 'top 78%',
+        start: 'top 80%',
+        once: true,
         onEnter: () => {
-          gsap.fromTo(qualityImage,
-            { x: 60, opacity: 0, rotate: -3 },
-            { x: 0, opacity: 1, rotate: 0, duration: 1.3, ease: 'expo.out' }
-          );
-        }
-      });
-      this.scrollTriggers.push(st);
-    }
-
-    // 6. FAQ — Staggered accordion reveal
-    const faqPanels = el.querySelectorAll('.faq-accordion mat-expansion-panel');
-    if (faqPanels.length) {
-      const st = ScrollTrigger.create({
-        trigger: '#faq',
-        start: 'top 75%',
-        onEnter: () => {
-          gsap.fromTo(faqPanels,
-            { y: 25, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out' }
-          );
-        }
-      });
-      this.scrollTriggers.push(st);
-    }
-
-    // 7. Footer — Elegant fade
-    const footer = el.querySelector('footer') || document.querySelector('footer');
-    if (footer) {
-      const st = ScrollTrigger.create({
-        trigger: footer,
-        start: 'top 92%',
-        onEnter: () => {
-          gsap.fromTo(footer,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1.5, ease: 'power2.out' }
-          );
-        }
-      });
-      this.scrollTriggers.push(st);
-    }
-
-    // 8. Subtle parallax for images on scroll
-    const images = el.querySelectorAll('.service-card img');
-    images.forEach((img: any) => {
-      const st = ScrollTrigger.create({
-        trigger: img,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 2,
-        onUpdate: (self: any) => {
-          gsap.set(img, {
-            y: self.progress * 30 - 15,
+          gsap.to(qualityImage, {
+            x: 0, opacity: 1, duration: 1.1, ease: 'expo.out'
           });
         }
       });
       this.scrollTriggers.push(st);
+    }
+
+    // ──────────────────────────────────────────────
+    // 6. FAQ PANELS — staggered accordion reveal (once)
+    // ──────────────────────────────────────────────
+    const faqPanels = el.querySelectorAll('.faq-accordion mat-expansion-panel');
+    if (faqPanels.length) {
+      gsap.set(faqPanels, { y: 20, opacity: 0 });
+
+      const st = ScrollTrigger.create({
+        trigger: '#faq',
+        start: 'top 78%',
+        once: true,
+        onEnter: () => {
+          gsap.to(faqPanels, {
+            y: 0, opacity: 1,
+            duration: 0.6, stagger: 0.1, ease: 'power3.out'
+          });
+        }
+      });
+      this.scrollTriggers.push(st);
+    }
+
+    // ──────────────────────────────────────────────
+    // 7. FOOTER — elegant fade in (once)
+    // ──────────────────────────────────────────────
+    const footer = el.querySelector('footer') || document.querySelector('footer');
+    if (footer) {
+      gsap.set(footer, { opacity: 0, y: 25 });
+
+      const st = ScrollTrigger.create({
+        trigger: footer,
+        start: 'top 92%',
+        once: true,
+        onEnter: () => {
+          gsap.to(footer, {
+            opacity: 1, y: 0,
+            duration: 1.2, ease: 'power2.out'
+          });
+        }
+      });
+      this.scrollTriggers.push(st);
+    }
+
+    // ──────────────────────────────────────────────
+    // 8. SUBTLE PARALLAX on service card images
+    // ──────────────────────────────────────────────
+    const images = el.querySelectorAll('.service-card img');
+    images.forEach((img: any) => {
+      gsap.set(img, { willChange: 'transform' });
+      const st = gsap.to(img, {
+        y: 25,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        }
+      });
+      if (st.scrollTrigger) {
+        this.scrollTriggers.push(st.scrollTrigger);
+      }
     });
 
-    // Header shrink on scroll
+    // ──────────────────────────────────────────────
+    // 9. HEADER — shrink/glass on scroll
+    // ──────────────────────────────────────────────
     const headerSt = ScrollTrigger.create({
       start: 'top -30',
       onEnter: () => {
@@ -339,7 +392,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             height: '64px',
             paddingTop: '0.5rem',
             paddingBottom: '0.5rem',
-            duration: 0.5,
+            duration: 0.4,
             ease: 'power2.out'
           });
           toolbar.classList.add('shadow-md', '!bg-brand-white/95', 'backdrop-blur-2xl');
@@ -353,7 +406,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             height: '80px',
             paddingTop: '1rem',
             paddingBottom: '1rem',
-            duration: 0.5,
+            duration: 0.4,
             ease: 'power2.out'
           });
           toolbar.classList.remove('shadow-md', '!bg-brand-white/95', 'backdrop-blur-2xl');
@@ -364,32 +417,36 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.scrollTriggers.push(headerSt);
   }
 
+  // ──────────────────────────────────────────────
+  // SCROLL-TO using Lenis (preferred) with GSAP fallback
+  // ──────────────────────────────────────────────
   scrollTo(elementId: string): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const element = document.getElementById(elementId);
-      if (element) {
-        import('gsap').then(({ gsap }) => {
-          import('gsap/ScrollToPlugin').then(({ ScrollToPlugin }) => {
-            gsap.registerPlugin(ScrollToPlugin);
-            
-            const offset = 80;
-            gsap.to(window, {
-              duration: 2,
-              scrollTo: { y: element, offsetY: offset },
-              ease: 'expo.inOut',
-              onComplete: () => {
-                const header = element.querySelector('.section-header');
-                if (header) {
-                  gsap.fromTo(header, 
-                    { scale: 0.97, opacity: 0.8 }, 
-                    { scale: 1, opacity: 1, duration: 1, ease: 'elastic.out(1, 0.7)' }
-                  );
-                }
-              }
-            });
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    const offset = 80; // navbar height
+
+    if (this.lenis) {
+      // Use Lenis scrollTo for seamless integration with smooth scroll
+      this.lenis.scrollTo(element, {
+        offset: -offset,
+        duration: 1.6,
+        easing: (t: number) => 1 - Math.pow(1 - t, 4),  // easeOutQuart
+      });
+    } else {
+      // GSAP fallback
+      import('gsap').then(({ gsap }) => {
+        import('gsap/ScrollToPlugin').then(({ ScrollToPlugin }) => {
+          gsap.registerPlugin(ScrollToPlugin);
+          gsap.to(window, {
+            duration: 1.6,
+            scrollTo: { y: element, offsetY: offset },
+            ease: 'power3.inOut',
           });
         });
-      }
+      });
     }
   }
 }
