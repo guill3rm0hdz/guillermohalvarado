@@ -1,26 +1,26 @@
-/* Smooth transitions for header elements */
+/* ─── Header Glass — Dark Luxury ─── */
 mat-toolbar {
-  transition: all 0.5s var(--ease-premium) !important;
+  transition: all 0.6s var(--ease-luxury) !important;
   will-change: transform, height;
 }
 
-mat-toolbar button, 
+mat-toolbar button,
 mat-toolbar a {
-  transition: all 0.3s var(--ease-smooth) !important;
+  transition: all 0.4s var(--ease-smooth) !important;
 }
 
-/* Ensure buttons are solid on the header */
+/* Ensure buttons inherit color */
 .mat-mdc-button {
   --mdc-text-button-label-text-color: inherit !important;
 }
 
-/* Enhanced Glass effect */
+/* Enhanced Glass effect — Dark */
 .backdrop-blur-2xl {
   backdrop-filter: saturate(180%) blur(24px);
   -webkit-backdrop-filter: saturate(180%) blur(24px);
 }
 
-/* Premium mat-expansion-panel overrides */
+/* ─── Material Expansion Panel — Dark Luxury ─── */
 .faq-accordion .mat-expansion-panel-body {
   padding: 0 !important;
 }
@@ -30,8 +30,23 @@ mat-toolbar a {
   border-color: var(--color-brand-orange) !important;
 }
 
+/* Dark theme override for expansion panels */
+.faq-accordion .mat-expansion-panel {
+  background: var(--color-brand-surface) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.faq-accordion .mat-expansion-panel-header-title {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
 /* Remove Material Design ripple for cleaner look */
 .mat-mdc-button .mat-mdc-button-persistent-ripple,
 .mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
   display: none;
+}
+
+/* Material button overrides for dark theme */
+.mat-mdc-unelevated-button.mat-primary {
+  --mdc-filled-button-container-color: var(--color-brand-orange) !important;
 }

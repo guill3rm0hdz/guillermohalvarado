@@ -135,7 +135,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // ──────────────────────────────────────────────
     gsap.fromTo(el, 
       { opacity: 0 },
-      { opacity: 1, duration: 0.8, ease: 'power2.out' }
+      { opacity: 1, duration: 0.6, ease: 'power2.out' }
     );
 
     // ──────────────────────────────────────────────
@@ -157,8 +157,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     }
     if (heroTitle) {
       heroTl.fromTo(heroTitle, 
-        { y: 60, opacity: 0, clipPath: 'inset(0 0 100% 0)' }, 
-        { y: 0, opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 1.4 }, 
+        { y: 40, opacity: 0, clipPath: 'inset(0 0 100% 0)' }, 
+        { y: 0, opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 1.2 }, 
         '-=0.7'
       );
     }
@@ -178,8 +178,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     }
     if (heroImage) {
       heroTl.fromTo(heroImage, 
-        { scale: 0.88, opacity: 0, rotate: 6, y: 20 }, 
-        { scale: 1, opacity: 1, rotate: 3, y: 0, duration: 1.6 }, 
+        { scale: 0.95, opacity: 0, rotate: 3, y: 10 }, 
+        { scale: 1, opacity: 1, rotate: 1, y: 0, duration: 1.4 }, 
         '-=1.2'
       );
     }
@@ -239,7 +239,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // ──────────────────────────────────────────────
     const serviceCards = el.querySelectorAll('.service-card');
     if (serviceCards.length) {
-      gsap.set(serviceCards, { y: 60, opacity: 0, scale: 0.96 });
+      gsap.set(serviceCards, { y: 40, opacity: 0, scale: 0.98 });
 
       const st = ScrollTrigger.create({
         trigger: '#especializacion',
@@ -248,7 +248,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         onEnter: () => {
           gsap.to(serviceCards, {
             y: 0, opacity: 1, scale: 1,
-            duration: 1.0, stagger: 0.2, ease: 'expo.out'
+            duration: 0.8, stagger: 0.15, ease: 'expo.out'
           });
         }
       });
@@ -260,7 +260,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // ──────────────────────────────────────────────
     const steps = el.querySelectorAll('.step-item');
     if (steps.length) {
-      gsap.set(steps, { y: 35, opacity: 0, scale: 0.94 });
+      gsap.set(steps, { y: 25, opacity: 0, scale: 0.97 });
 
       steps.forEach((step: any, i: number) => {
         const st = ScrollTrigger.create({
@@ -270,9 +270,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           onEnter: () => {
             gsap.to(step, {
               y: 0, opacity: 1, scale: 1,
-              duration: 0.8,
-              delay: i * 0.08,
-              ease: 'back.out(1.2)'
+              duration: 0.7,
+              delay: i * 0.06,
+              ease: 'power3.out'
             });
           }
         });
@@ -285,7 +285,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // ──────────────────────────────────────────────
     const qualityContent = el.querySelector('.quality-content');
     if (qualityContent) {
-      gsap.set(qualityContent, { x: -50, opacity: 0 });
+      gsap.set(qualityContent, { x: -30, opacity: 0 });
 
       const st = ScrollTrigger.create({
         trigger: qualityContent,
@@ -302,7 +302,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     const qualityImage = el.querySelector('.quality-image');
     if (qualityImage) {
-      gsap.set(qualityImage, { x: 50, opacity: 0 });
+      gsap.set(qualityImage, { x: 30, opacity: 0 });
 
       const st = ScrollTrigger.create({
         trigger: qualityImage,
@@ -395,8 +395,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             duration: 0.4,
             ease: 'power2.out'
           });
-          toolbar.classList.add('shadow-md', '!bg-brand-white/95', 'backdrop-blur-2xl');
-          toolbar.classList.remove('bg-brand-white/80');
+          toolbar.classList.add('shadow-md', '!bg-brand-bg/95', 'backdrop-blur-2xl');
+          toolbar.classList.remove('bg-brand-bg/80');
         }
       },
       onLeaveBack: () => {
@@ -409,8 +409,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             duration: 0.4,
             ease: 'power2.out'
           });
-          toolbar.classList.remove('shadow-md', '!bg-brand-white/95', 'backdrop-blur-2xl');
-          toolbar.classList.add('bg-brand-white/80');
+          toolbar.classList.remove('shadow-md', '!bg-brand-bg/95', 'backdrop-blur-2xl');
+          toolbar.classList.add('bg-brand-bg/80');
         }
       },
     });
